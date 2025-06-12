@@ -1,12 +1,12 @@
 # How to show the rendered HTML inside the ToolTip of the WPF SfDataGrid
 
-By default, SfDataGrid does not have built-in support to render HTML code and display it in the tooltip. However, we can achieve this requirement by rendering the HTML using SfRichTextBox.
+By default, [SfDataGrid](https://www.syncfusion.com/wpf-controls/datagrid) does not have built-in support to render HTML code and display it in the **tooltip**. However, we can achieve this requirement by rendering the **HTML** using [SfRichTextBoxAdv](https://www.syncfusion.com/wpf-controls/richtextbox).
 
-In this approach, load the HTML code into SfRichTextBox, render the HTML content, and then set SfRichTextBox as the tooltip content inside the CellToolTipOpening event.
+In this approach, load the HTML code into **SfRichTextBoxAdv**, render the HTML content, and then set SfRichTextBoxAdv as the tooltip content inside the [CellToolTipOpening](https://help.syncfusion.com/cr/wpf/Syncfusion.UI.Xaml.Grid.SfDataGrid.html#Syncfusion_UI_Xaml_Grid_SfDataGrid_CellToolTipOpening) event.
 
 **Step 1: Subscribe to the CellToolTipOpening Event of the SfDataGrid**
                          
- Subscribe to the CellToolTipOpening event of SfDataGrid, and enable the ShowTooltip property for the desired column where the tooltip should be displayed.
+Subscribe to the CellToolTipOpening event of SfDataGrid, and enable the [ShowTooltip](https://help.syncfusion.com/cr/wpf/Syncfusion.UI.Xaml.Grid.SfGridBase.html#Syncfusion_UI_Xaml_Grid_SfGridBase_ShowToolTip) property for the desired column where the tooltip should be displayed.
 
  ```xml
 <syncfusion:SfDataGrid HorizontalAlignment="Center"  
