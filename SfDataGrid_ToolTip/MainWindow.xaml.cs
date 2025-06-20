@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Syncfusion.UI.Xaml.Grid;
 using Syncfusion.Windows.Controls.RichTextBoxAdv;
 
 namespace WPFDataGrid
@@ -28,15 +29,19 @@ namespace WPFDataGrid
         }
 
         SfRichTextBoxAdv richTextBoxAdv = new SfRichTextBoxAdv() { Width = 300, Height = 200, LayoutType = LayoutType.Continuous };
-        private void dataGrid_CellToolTipOpening(object sender, Syncfusion.UI.Xaml.Grid.GridCellToolTipOpeningEventArgs e)
+        private void OnCellToolTipOpening(object sender, GridCellToolTipOpeningEventArgs e)
         {
-            string htmlContent = (e.Record as OrderInfo).HTMLCode;
-            Stream stream = new MemoryStream();
-            byte[] bytes = Encoding.UTF8.GetBytes(htmlContent);
-            stream.Write(bytes, 0, bytes.Length);
-            stream.Position = 0;
-            richTextBoxAdv.Load(stream, FormatType.Html);
-            e.ToolTip.Content = richTextBoxAdv;
+            if (e.Record != null && e.Record is OrderInfo)
+            {
+                string htmlContent = (e.Record as OrderInfo).HTMLCode;
+                Stream stream = new MemoryStream();
+                byte[] bytes = Encoding.UTF8.GetBytes(htmlContent);
+                if (bytes != null)
+                    stream.Write(bytes, 0, bytes.Length);
+                stream.Position = 0;
+                richTextBoxAdv.Load(stream, FormatType.Html);
+                e.ToolTip.Content = richTextBoxAdv;
+            }
         }
     }
 }

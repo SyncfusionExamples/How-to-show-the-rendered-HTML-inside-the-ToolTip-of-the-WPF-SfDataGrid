@@ -13,32 +13,36 @@ Subscribe to the CellToolTipOpening event of SfDataGrid, and enable the [ShowToo
                        x:Name="dataGrid"  
                        ItemsSource="{Binding Orders}" 
                        AutoGenerateColumns="False" 
-                       CellToolTipOpening="dataGrid_CellToolTipOpening"  >
+                       CellToolTipOpening="OnCellToolTipOpening">
     <syncfusion:SfDataGrid.Columns>
           <syncfusion:GridTextColumn HeaderText="Customer ID" 
                                      MappingName="CustomerID" 
-                                     ShowToolTip="True"  />
+                                     ShowToolTip="True"/>
         <syncfusion:GridTextColumn HeaderText="Customer Name" 
                                    MappingName="CustomerName"/>
     </syncfusion:SfDataGrid.Columns>
 </syncfusion:SfDataGrid> 
  ```
-**Step 2: Handle the Event**
+**Step 2: Customize the ToolTip content to display as HTML content**
            
    In the event handler, retrieve the HTML code, convert it into a stream, and pass it to RichTextBoxAdv. Then, set RichTextBoxAdv as the tooltip content of the SfDataGrid.
 
  ```csharp
     SfRichTextBoxAdv richTextBoxAdv = new SfRichTextBoxAdv() { Width = 300, Height = 200, LayoutType = LayoutType.Continuous};
 
-    private void dataGrid_CellToolTipOpening(object sender, Syncfusion.UI.Xaml.Grid.GridCellToolTipOpeningEventArgs e)
+    private void OnCellToolTipOpening(object sender, GridCellToolTipOpeningEventArgs e)
     {
-        string htmlContent = (e.Record as OrderInfo).HTMLCode;
-        Stream stream = new MemoryStream();
-        byte[] bytes = Encoding.UTF8.GetBytes(htmlContent);
-        stream.Write(bytes, 0, bytes.Length);
-        stream.Position = 0;
-        richTextBoxAdv.Load(stream, FormatType.Html);
-        e.ToolTip.Content = richTextBoxAdv;
+        if (e.Record != null && e.Record is OrderInfo)
+        {
+           string htmlContent = (e.Record as OrderInfo).HTMLCode;
+           Stream stream = new MemoryStream();
+           byte[] bytes = Encoding.UTF8.GetBytes(htmlContent);
+           if (bytes != null)
+             stream.Write(bytes, 0, bytes.Length);
+           stream.Position = 0;
+           richTextBoxAdv.Load(stream, FormatType.Html);
+           e.ToolTip.Content = richTextBoxAdv;
+        }
     }
  ```
 

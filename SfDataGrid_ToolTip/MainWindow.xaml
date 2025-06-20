@@ -6,12 +6,12 @@
         xmlns:local="clr-namespace:WPFDataGrid"
         xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="ToolTipSample" Height="450" Width="800">
     <Window.DataContext>
         <local:OrderInfoCollection/>
     </Window.DataContext>
     <Grid>
-        <syncfusion:SfDataGrid x:Name="dataGrid" ItemsSource="{Binding Orders}" AutoGenerateColumns="False" CellToolTipOpening="dataGrid_CellToolTipOpening">
+        <syncfusion:SfDataGrid x:Name="dataGrid" ItemsSource="{Binding Orders}" AutoGenerateColumns="False" CellToolTipOpening="OnCellToolTipOpening">
             <syncfusion:SfDataGrid.Columns>
                 <syncfusion:GridTextColumn MappingName="CustomerID" 
                                            HeaderText="Customer ID" 
