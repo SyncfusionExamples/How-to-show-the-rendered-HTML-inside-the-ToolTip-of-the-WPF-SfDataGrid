@@ -34,13 +34,16 @@ namespace WPFDataGrid
             if (e.Record != null && e.Record is OrderInfo)
             {
                 string htmlContent = (e.Record as OrderInfo).HTMLCode;
-                Stream stream = new MemoryStream();
-                byte[] bytes = Encoding.UTF8.GetBytes(htmlContent);
-                if (bytes != null)
-                    stream.Write(bytes, 0, bytes.Length);
-                stream.Position = 0;
-                richTextBoxAdv.Load(stream, FormatType.Html);
-                e.ToolTip.Content = richTextBoxAdv;
+                if (htmlContent != null)
+                {
+                    Stream stream = new MemoryStream();
+                    byte[] bytes = Encoding.UTF8.GetBytes(htmlContent);
+                    if (bytes != null)
+                        stream.Write(bytes, 0, bytes.Length);
+                    stream.Position = 0;
+                    richTextBoxAdv.Load(stream, FormatType.Html);
+                    e.ToolTip.Content = richTextBoxAdv;
+                }      
             }
         }
     }
