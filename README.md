@@ -10,10 +10,10 @@ Subscribe to the CellToolTipOpening event of SfDataGrid, and enable the [ShowToo
 
  ```xml
 <syncfusion:SfDataGrid HorizontalAlignment="Center"  
-                       x:Name="dataGrid"  
-                       ItemsSource="{Binding Orders}" 
-                       AutoGenerateColumns="False" 
-                       CellToolTipOpening="OnCellToolTipOpening">
+                        x:Name="dataGrid"  
+                        ItemsSource="{Binding Orders}" 
+                        AutoGenerateColumns="False" 
+                        CellToolTipOpening="OnCellToolTipOpening">
     <syncfusion:SfDataGrid.Columns>
           <syncfusion:GridTextColumn HeaderText="Customer ID" 
                                      MappingName="CustomerID" 
@@ -32,23 +32,23 @@ Subscribe to the CellToolTipOpening event of SfDataGrid, and enable the [ShowToo
 
     private void OnCellToolTipOpening(object sender, GridCellToolTipOpeningEventArgs e)
     {
-     if (e.Record != null && e.Record is OrderInfo)
-     {
-         string htmlContent = (e.Record as OrderInfo).HTMLCode;
-         if (htmlContent != null)
-         {
-             Stream stream = new MemoryStream();
-             byte[] bytes = Encoding.UTF8.GetBytes(htmlContent);
-             if (bytes != null)
+       if (e.Record != null && e.Record is OrderInfo)
+       {
+           string htmlContent = (e.Record as OrderInfo).HTMLCode;
+           if (htmlContent != null)
+           {
+              Stream stream = new MemoryStream();
+              byte[] bytes = Encoding.UTF8.GetBytes(htmlContent);
+              if (bytes != null)
                  stream.Write(bytes, 0, bytes.Length);
-             stream.Position = 0;
-             richTextBoxAdv.Load(stream, FormatType.Html);
-             e.ToolTip.Content = richTextBoxAdv;
-         }      
+              stream.Position = 0;
+              richTextBoxAdv.Load(stream, FormatType.Html);
+              e.ToolTip.Content = richTextBoxAdv;
+           }      
+        }
      }
-    }
  ```
 
  ![ToolTip display HTML value](ToolTipdisplayHTML.png)
 
-Take a moment to peruse the [WPF SfDataGrid - ToolTip](https://help.syncfusion.com/wpf/datagrid/tooltip){target="_blank"} documentation where you can find about the tooltip with code examples.
+Take a moment to peruse the [WPF SfDataGrid - ToolTip](https://help.syncfusion.com/wpf/datagrid/tooltip) documentation where you can find about the tooltip with code examples.
