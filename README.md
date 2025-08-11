@@ -1,4 +1,4 @@
-# How to show the rendered HTML inside the ToolTip of the WPF DataGrid (SfDataGrid)
+# How to show the rendered HTML inside the ToolTip of the WPF DataGrid?
 
 By default, [WPF DataGrid](https://www.syncfusion.com/wpf-controls/datagrid) (SfDataGrid) does not have built-in support to render HTML code and display it in the **ToolTip**. However, we can achieve this requirement by rendering the **HTML** using [WPF RichTextBoxAdv](https://www.syncfusion.com/wpf-controls/richtextbox) (SfRichTextBoxAdv).
 
